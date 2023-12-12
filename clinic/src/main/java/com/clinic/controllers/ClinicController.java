@@ -12,8 +12,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClinicController {
     private final ClinicService clinicService;
+
     @GetMapping("/users")
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return clinicService.getAllUser();
     }
 

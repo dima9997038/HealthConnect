@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class NotValidCredentials  {
+public class NotValidCredentials {
     private int status;
     private String message;
     private Date timeStamp;
