@@ -22,7 +22,7 @@ public class AuthController {
     private final JwtTokenUtils jwtTokenUtils;
 
     @PostMapping("/auth")
-    @CrossOrigin("http://localhost:3000")
+
     public ResponseEntity<?> createToken(@RequestBody JwtRequestDto jwtRequestDto) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequestDto.getUsername()
