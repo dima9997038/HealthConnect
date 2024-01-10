@@ -2,7 +2,7 @@ package com.clinic.services;
 
 
 
-import com.core.dtos.ClientDto;
+import com.core.dto.ClientDto;
 
 import java.util.List;
 

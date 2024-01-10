@@ -1,10 +1,11 @@
 import React from 'react';
-import {Carousel, Col, Container, Row, Tab, Nav} from 'react-bootstrap';
+import {Carousel, Col, Row} from 'react-bootstrap';
 import clinicImg1 from '../asserts/clinic1.jpg'
 import clinicImg2 from '../asserts/clinic2.jpg'
 import clinicImg3 from '../asserts/clinic3.jpg'
 import clinicImg4 from '../asserts/clinic4.jpg'
 import styled from "styled-components";
+import LeftMenu from "./LeftMenu";
 
 const Styles = styled.div`
   a, .navbar-brand, .navbar-nav {
@@ -15,31 +16,14 @@ const Styles = styled.div`
     }
   }
 `
-
-
 const Slider = () => {
 
     return (
         <>
             <Styles>
-            {/*<Container>*/}
-            {/*    <Tab.Container id="ledt-tab-example" defaultActiveKey="first">*/}
                     <Row>
                         <Col sm={2}>
-                            <Nav variant="pils" className="flex-column mt-2">
-                                <Nav.Item>
-                                    <Nav.Link href="/"><h2>Home</h2></Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link href="/about"><h2>About Us</h2></Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link href="/contacts"><h2>Contacts</h2></Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link href="/blog"><h2>Blog</h2></Nav.Link>
-                                </Nav.Item>
-                            </Nav>
+                            <LeftMenu/>
                         </Col>
                         <Col sm={10}>
                             <Carousel>
@@ -94,8 +78,6 @@ const Slider = () => {
                             </Carousel>
                         </Col>
                     </Row>
-            {/*    </Tab.Container>*/}
-            {/*</Container>*/}
             </Styles>
         </>
     );

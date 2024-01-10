@@ -27,6 +27,8 @@ public class Order {
     private TypeAppointment typeAppointment;
     @ManyToOne
     private Client client;
+    @ManyToOne
+    private Doctor doctor;
     @CreationTimestamp
     @Column(name = "creation_date")
     private LocalDateTime creationDate;

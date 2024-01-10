@@ -1,6 +1,6 @@
 package com.core.convertors;
 
-import com.core.dtos.ClientDto;
+import com.core.dto.ClientDto;
 import com.core.models.Client;
 import org.springframework.stereotype.Component;
 

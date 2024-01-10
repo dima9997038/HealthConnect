@@ -29,4 +29,6 @@ public class TypeAppointment {
     private Category category;
     @OneToMany(mappedBy = "typeAppointment")
     private List<Order> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "typeAppointment")
+    private List<Doctor> doctors = new ArrayList<>();
 }

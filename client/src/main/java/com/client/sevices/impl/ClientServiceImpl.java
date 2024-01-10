@@ -2,7 +2,7 @@ package com.client.sevices.impl;
 
 import com.core.convertors.ClientDtoToClientConvertor;
 import com.core.convertors.ClientToClientDtoConvertor;
-import com.core.dtos.ClientDto;
+import com.core.dto.ClientDto;
 import com.core.repositories.ClientRepository;
 import com.client.sevices.ClientService;
 import com.core.enums.UserRole;

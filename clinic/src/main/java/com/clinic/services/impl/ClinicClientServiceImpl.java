@@ -2,8 +2,7 @@ package com.clinic.services.impl;
 
 import com.clinic.services.ClinicClientService;
 import com.core.convertors.ClientToClientDtoConvertor;
-import com.core.dtos.ClientDto;
-import com.core.models.Client;
+import com.core.dto.ClientDto;
 import com.core.repositories.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
