@@ -1,7 +1,6 @@
 package com.client.controllers;
 
 import com.core.dto.CategoryDto;
-import com.core.models.Category;
 import com.core.services.impl.CategoryServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

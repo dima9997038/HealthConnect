@@ -11,10 +11,12 @@ import com.core.services.DoctorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+
 public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepository doctorRepository;
     private final TypeAppointmentRepository typeAppointmentRepository;

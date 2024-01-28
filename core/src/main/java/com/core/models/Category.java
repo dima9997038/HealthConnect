@@ -26,4 +26,6 @@ public class Category {
     private String description;
     @OneToMany(mappedBy = "category")
     List<TypeAppointment> typeAppointments = new ArrayList<>();
+    @OneToMany(mappedBy = "category")
+    List<Image> images = new ArrayList<>();
 }

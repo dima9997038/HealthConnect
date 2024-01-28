@@ -7,9 +7,7 @@ function About(props) {
 
     return (
         <div>
-            {token}
             <h2>About Us</h2>
-
         </div>
     );
 }

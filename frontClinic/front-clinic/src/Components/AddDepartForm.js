@@ -5,9 +5,25 @@ import axios from "axios";
 function AddDepartForm(props) {
     const [name,setName]=useState();
     const [description,setDescription]=useState();
-    function handleAddDepart() {
+    const [file, setFile] = useState();
 
+    function handleAddDepart(e) {
+        e.preventDefault()
+        console.log(file)
+        const url = 'http://localhost:8082/api/v1/admin/addDepart';
+        axios.post(url, {
+            name: name,
+            description: description,
+            file:file
+        }, {
+            headers: {
+                'content-type': 'multipart/form-data',
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            }
+        }).then(resp => console.log(resp))
+            .catch(err=>alert("Check your role"))
     }
+
 
     return (
         <Row>
@@ -30,7 +46,7 @@ function AddDepartForm(props) {
                     <Form.Group controlId="fromBasicText2">
                         <Form.Label>First name</Form.Label>
                         <Form.Control type="file" placeholder="Image"
-                                      // onChange={(e) => setFirstName(e.target.value)}
+                                      onChange={(e) =>setFile(e.target.files[0])}
                         />
                     </Form.Group>
                     <Button variant="primary" className="me-3 my-lg-3" onClick={handleAddDepart}>Add Department</Button>

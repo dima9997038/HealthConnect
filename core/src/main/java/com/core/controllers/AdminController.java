@@ -1,5 +1,6 @@
 package com.core.controllers;
 
+import com.core.dto.CategoryDto;
 import com.core.dto.DoctorDto;
 import com.core.services.impl.DoctorServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 @RestController
 @RequestMapping("/api/v1/admin")
@@ -22,5 +26,11 @@ public class AdminController {
         DoctorDto dto = doctorService.addDoctor(doctorDto);
         log.info("Have been registered doctor with login " + dto.getLogin());
         return ResponseEntity.ok(doctorDto);
+    }
+    @PostMapping("/addDepart")
+    public ResponseEntity<CategoryDto> addDepart( CategoryDto categoryDto, MultipartFile file) {
+//        DoctorDto dto = doctorService.addDoctor(doctorDto);
+//        log.info("Have been registered doctor with login " + dto.getLogin());
+        return null;
     }
 }
