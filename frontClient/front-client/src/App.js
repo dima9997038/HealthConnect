@@ -10,6 +10,8 @@ import {useState} from "react";
 import Departments from "./Components/Departments";
 import Footer from "./Components/Footer";
 import DepartDetails from "./Components/DepartDetails";
+import AppointmentDetails from "./Components/AppointmentDetails";
+import ScheduleDoctor from "./Components/ScheduleDoctor";
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
                         <Route exact path="/about" element={<About/>}/>
                         <Route exact path="/depart" element={<Departments/>}/>
                         <Route exact path="/departDetails/:id" element={<DepartDetails/>} />
+                        <Route exact path="/appointmentDetails/:id" element={<AppointmentDetails/>} />
+                        <Route exact path="scheduleDoctor/:id" element={<ScheduleDoctor/>}/>
                     </Routes>
                     <Footer/>
                 </Router>

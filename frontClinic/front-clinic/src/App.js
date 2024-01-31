@@ -12,6 +12,8 @@ import DepartDetails from "./Components/DepartDetails";
 import Admin from "./Components/Admin";
 import AddDoctorForm from "./Components/AddDoctorForm";
 import AddDepartForm from "./Components/AddDepartForm";
+import AppointmentDetails from "./Components/AppointmentDetails";
+import ScheduleDoctor from "./Components/ScheduleDoctor";
 
 
 function App() {
@@ -26,9 +28,11 @@ function App() {
               <Route exact path="/" element={<Home/>}/>
               <Route exact path="/depart" element={<Departments/>}/>
               <Route exact path="/departDetails/:id" element={<DepartDetails/>} />
+              <Route exact path="/appointmentDetails/:id" element={<AppointmentDetails/>} />
               <Route exact path="/admin" element={<Admin/>} />
               <Route exact path="/addDoctor" element={<AddDoctorForm/>} />
               <Route exact path="/addDepart" element={<AddDepartForm/>} />
+              <Route exact path="scheduleDoctor/:id" element={<ScheduleDoctor/>}/>
             </Routes>
             <Footer/>
           </Router>

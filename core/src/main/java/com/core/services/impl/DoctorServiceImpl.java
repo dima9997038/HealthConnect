@@ -33,4 +33,14 @@ public class DoctorServiceImpl implements DoctorService {
         Doctor save = doctorRepository.save(convert);
         return doctorToDoctorDtoConvertor.convert(save);
     }
+
+    @Override
+    public List<DoctorDto> getDoctorsByAppointments(Integer appointmentId) {
+        return doctorRepository.findAll()
+                .stream()
+                .filter(doctor -> doctor.getTypeAppointment().getId() == appointmentId)
+                .map(doctorToDoctorDtoConvertor::convert)
+                .toList();
+
+    }
 }

@@ -31,7 +31,7 @@ function DepartDetails(props) {
                                     <Card.Body>
                                         <Card.Title>{d.name}</Card.Title>
                                         <Card.Text>{d.description}</Card.Text>
-                                        <Link style={{color: 'green'}} to={`/departDetails/${d.id}`}> <Button variant='primary'>Details</Button> </Link>
+                                        <Link style={{color: 'green'}} to={`/appointmentDetails/${d.id}`}> <Button variant='primary'>Details</Button> </Link>
                                     </Card.Body>
                                 </Card>
                             </Col>
