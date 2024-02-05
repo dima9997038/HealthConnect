@@ -1,0 +1,20 @@
+package com.clinic.controllers;
+
+import com.clinic.dto.AppointmentDto;
+import com.clinic.services.impl.AppointmentClinicServiceImpl;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/v1/clinic/appointment")
+@CrossOrigin("http://localhost:3006")
+@RequiredArgsConstructor
+public class AppointmentController {
+    private final AppointmentClinicServiceImpl appointmentClinicService;
+
+    @PostMapping
+    public void setAppointment(@RequestBody AppointmentDto appointment){
+        appointmentClinicService.addAppointment(appointment);
+    }
+
+}

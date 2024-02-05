@@ -5,14 +5,14 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import {Button, Form, Modal} from "react-bootstrap";
+import axios from "axios";
+import {jwtDecode} from "jwt-decode";
 
 
 function ScheduleDoctor(props) {
     let {id} = useParams();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    // npm install @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid @fullcalendar/timegrid @mui/material @emotion/react @emotion/styled
-    // npm i @fullcalendar/daygrid @fullcalendar/interaction @fullcalendar/timegrid
     const techEvents = [
         {
             title: "Event",
@@ -25,6 +25,23 @@ function ScheduleDoctor(props) {
     const handleDateClick = (e) => {
         setShow(true);
         console.log(e);
+
+
+
+
+        // e.preventDefault();
+        axios.post("http://localhost:8081/api/v1/clinic/appointment", {
+            doctorId: id,
+            date:e.date
+        },{headers:{
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
+            }}).then(function (response) {
+
+            handleClose();
+        }).catch(function (error) {
+            console.log(error);
+            alert("Wrong credential")
+        });
     };
     return (
         <div>
