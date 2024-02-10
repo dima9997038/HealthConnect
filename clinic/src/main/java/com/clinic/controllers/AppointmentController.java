@@ -2,8 +2,13 @@ package com.clinic.controllers;
 
 import com.clinic.dto.AppointmentDto;
 import com.clinic.services.impl.AppointmentClinicServiceImpl;
+import com.core.dto.AppointmentByDoctorDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/clinic/appointment")
@@ -15,6 +20,10 @@ public class AppointmentController {
     @PostMapping
     public void setAppointment(@RequestBody AppointmentDto appointment){
         appointmentClinicService.addAppointment(appointment);
+    }
+    @GetMapping("/byDoctor/{id}")
+    public List<AppointmentByDoctorDto> getAppointmentByDoctor(@PathVariable Long id){
+        return appointmentClinicService.getAppointmentDoctorList(id);
     }
 
 }

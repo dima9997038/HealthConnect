@@ -2,6 +2,8 @@ package com.clinic.services.impl;
 
 import com.clinic.dto.AppointmentDto;
 import com.clinic.services.AppointmentClinicService;
+import com.clinic.transformers.OrderToAppointmentByDoctorDto;
+import com.core.dto.AppointmentByDoctorDto;
 import com.core.enums.TypeOrderStatus;
 import com.core.models.Doctor;
 import com.core.models.Order;
@@ -19,6 +21,7 @@ import java.util.List;
 public class AppointmentClinicServiceImpl implements AppointmentClinicService {
     private final DoctorRepository doctorRepository;
     private final OrderRepository orderRepository;
+    private final OrderToAppointmentByDoctorDto orderToAppointmentByDoctorDto;
     @Override
     public void addAppointment(AppointmentDto appointment) {
         Doctor doctor = doctorRepository.findById(appointment.getDoctorId()).orElseThrow();
@@ -26,7 +29,7 @@ public class AppointmentClinicServiceImpl implements AppointmentClinicService {
         order.setQuantity(1);
         order.setDoctor(doctor);
         order.setTypeAppointment(doctor.getTypeAppointment());
-        order.setCreationDate(appointment.getDate());
+        order.setAppointmentDate(appointment.getDate());
         OrderStatus orderStatus=new OrderStatus();
         orderStatus.setOrder(order);
         orderStatus.setTypeOrderStatus(TypeOrderStatus.NEW);
@@ -34,7 +37,14 @@ public class AppointmentClinicServiceImpl implements AppointmentClinicService {
         orderStatuses.add(orderStatus);
         order.setStatuses(orderStatuses);
         orderRepository.save(order);
+    }
 
-
+    @Override
+    public List<AppointmentByDoctorDto> getAppointmentDoctorList(Long id) {
+        List<Order> orders = orderRepository.findAll();
+        return   orders.stream()
+                .filter(order -> order.getDoctor().getId().equals(id))
+                .map(orderToAppointmentByDoctorDto::transform)
+                .toList();
     }
 }

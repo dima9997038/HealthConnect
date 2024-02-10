@@ -32,6 +32,8 @@ public class Order {
     @CreationTimestamp
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
+    @Column(name = "appointment_date")
+    private LocalDateTime appointmentDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     List<OrderStatus> statuses = new ArrayList<>();
 }

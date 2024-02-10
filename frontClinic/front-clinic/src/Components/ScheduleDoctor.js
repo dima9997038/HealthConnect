@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import Fullcalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -13,32 +13,38 @@ function ScheduleDoctor(props) {
     let {id} = useParams();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const techEvents = [
-        {
-            title: "Event",
-            start: "2024-01-30T10:00:00Z",
-            end: "2024-01-30T12:00:00Z",
-            description: "app"
+    const [listAppointment, setListAppointment] = useState([]);
 
-        }
-    ]
+    useEffect(() => {
+        const apiUrl = 'http://localhost:8081/api/v1/clinic/appointment/byDoctor/'+ id;;
+
+        axios.get(apiUrl,{headers:{
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
+            }})
+            .then((resp) => {
+            const data = resp.data;
+            console.log(data)
+            setListAppointment(data);
+        }).catch(err => {
+            console.error(err)
+        });
+    }, [setListAppointment]);
+
     const handleDateClick = (e) => {
         setShow(true);
-        console.log(e);
-
-
-
-
-        // e.preventDefault();
+        console.log(listAppointment);
+        console.log(id);
         axios.post("http://localhost:8081/api/v1/clinic/appointment", {
             doctorId: id,
             date:e.date
         },{headers:{
                 'Authorization': 'Bearer ' + localStorage.getItem("token")
-            }}).then(function (response) {
+            }})
+            .then(function (response) {
 
             handleClose();
-        }).catch(function (error) {
+        })
+            .catch(function (error) {
             console.log(error);
             alert("Wrong credential")
         });
@@ -54,7 +60,7 @@ function ScheduleDoctor(props) {
                     end: "dayGridMonth,timeGridWeek,timeGridDay", // will normally be on the right. if RTL, will be on the left
                 }}
                 height={"90vh"}
-                events={techEvents}
+                events={listAppointment}
                 dateClick={handleDateClick}
 
             />
