@@ -4,9 +4,8 @@ import Fullcalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import {Button, Form, Modal} from "react-bootstrap";
+import {Button, Modal} from "react-bootstrap";
 import axios from "axios";
-import {jwtDecode} from "jwt-decode";
 
 
 function ScheduleDoctor(props) {
@@ -41,7 +40,8 @@ function ScheduleDoctor(props) {
                 'Authorization': 'Bearer ' + localStorage.getItem("token")
             }})
             .then(function (response) {
-
+                console.log(response.data)
+                setListAppointment(response.data)
             handleClose();
         })
             .catch(function (error) {
@@ -60,6 +60,7 @@ function ScheduleDoctor(props) {
                     end: "dayGridMonth,timeGridWeek,timeGridDay", // will normally be on the right. if RTL, will be on the left
                 }}
                 height={"90vh"}
+                timeZone={'Europe/Minsk'}
                 events={listAppointment}
                 dateClick={handleDateClick}
 

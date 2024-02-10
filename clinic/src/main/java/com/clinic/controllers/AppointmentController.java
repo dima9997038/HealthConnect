@@ -18,8 +18,10 @@ public class AppointmentController {
     private final AppointmentClinicServiceImpl appointmentClinicService;
 
     @PostMapping
-    public void setAppointment(@RequestBody AppointmentDto appointment){
+    public List<AppointmentByDoctorDto> setAppointment(@RequestBody AppointmentDto appointment){
         appointmentClinicService.addAppointment(appointment);
+        return appointmentClinicService.getAppointmentDoctorList(appointment.getDoctorId());
+
     }
     @GetMapping("/byDoctor/{id}")
     public List<AppointmentByDoctorDto> getAppointmentByDoctor(@PathVariable Long id){

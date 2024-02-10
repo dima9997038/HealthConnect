@@ -57,7 +57,7 @@ function ScheduleDoctor(props) {
                 'Authorization': 'Bearer ' + localStorage.getItem("token")
             }})
             .then(function (response) {
-
+                setShow(response.data)
                 handleClose();
             })
             .catch(function (error) {

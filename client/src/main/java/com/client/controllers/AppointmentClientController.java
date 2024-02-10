@@ -20,7 +20,8 @@ public class AppointmentClientController {
         return appointmentClientService.getAppointmentDoctorList(id);
     }
     @PostMapping
-    public void setAppointment(@RequestBody AppointmentClientDto appointment){
+    public List<AppointmentByDoctorDto> setAppointment(@RequestBody AppointmentClientDto appointment){
         appointmentClientService.addAppointment(appointment);
+        return appointmentClientService.getAppointmentDoctorList(appointment.getDoctorId());
     }
 }
