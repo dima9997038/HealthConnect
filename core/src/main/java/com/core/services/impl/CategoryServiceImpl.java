@@ -4,7 +4,7 @@ import com.core.convertors.CategoryToCategoryDtoConvertor;
 import com.core.dto.CategoryDto;
 import com.core.dto.TypeAppointmentDto;
 import com.core.repositories.CategoryRepository;
-import com.core.services.CategorySevice;
+import com.core.services.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class CategoryServiceImpl implements CategorySevice {
+public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryToCategoryDtoConvertor categoryToCategoryDtoConvertor;
 

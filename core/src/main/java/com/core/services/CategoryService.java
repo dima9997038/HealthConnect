@@ -1,11 +1,10 @@
 package com.core.services;
 
 import com.core.dto.CategoryDto;
-import com.core.models.Category;
 
 import java.util.List;
 
-public interface CategorySevice {
+public interface CategoryService {
     List<CategoryDto> getAllCategories();
 
     List<String> getAllTypeAppointmentsName();

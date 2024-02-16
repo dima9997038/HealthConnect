@@ -3,14 +3,17 @@ package com.core.services.impl;
 import com.core.convertors.DoctorDtoToDoctorConvertor;
 import com.core.convertors.DoctorToDoctorDtoConvertor;
 import com.core.dto.DoctorDto;
+import com.core.enums.UserRole;
 import com.core.models.Doctor;
 import com.core.models.TypeAppointment;
 import com.core.repositories.DoctorRepository;
 import com.core.repositories.TypeAppointmentRepository;
 import com.core.services.DoctorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +25,7 @@ public class DoctorServiceImpl implements DoctorService {
     private final TypeAppointmentRepository typeAppointmentRepository;
     private final DoctorDtoToDoctorConvertor doctorDtoToDoctorConvertor;
     private final DoctorToDoctorDtoConvertor doctorToDoctorDtoConvertor;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public DoctorDto addDoctor(DoctorDto doctorDto) {
@@ -30,6 +34,8 @@ public class DoctorServiceImpl implements DoctorService {
         if (typeAppointmentByName.isPresent()) {
             convert.setTypeAppointment(typeAppointmentByName.get());
         }
+        convert.setPassword(passwordEncoder.encode(convert.getPassword()));
+        convert.getUserRoles().add(UserRole.ROLE_DOCTOR);
         Doctor save = doctorRepository.save(convert);
         return doctorToDoctorDtoConvertor.convert(save);
     }

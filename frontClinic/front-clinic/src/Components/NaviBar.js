@@ -84,7 +84,6 @@ function NaviBar(props) {
                             {auth === "false"
                                 ? <>
                                     <Button variant="primary" className="me-3" onClick={handleShow}>Log In</Button>
-                                    <Button variant="primary" className="me-3">Register</Button>
                                 </>
                                 : <>
                                     {role === 'ROLE_ADMIN'
