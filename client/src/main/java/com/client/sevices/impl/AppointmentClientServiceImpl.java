@@ -1,13 +1,17 @@
 package com.client.sevices.impl;
 
 import com.client.dtos.AppointmentClientDto;
+import com.client.dtos.MyAppointmentsDto;
 import com.client.sevices.AppointmentClientService;
 import com.client.transformers.OrderToAppointmentByDoctorDto;
+import com.client.transformers.OrderToMyAppointmentDtoTransformer;
 import com.core.dto.AppointmentByDoctorDto;
 import com.core.models.Client;
 import com.core.models.Order;
+import com.core.models.User;
 import com.core.repositories.ClientRepository;
 import com.core.repositories.OrderRepository;
+import com.core.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +24,9 @@ public class AppointmentClientServiceImpl implements AppointmentClientService {
     private final OrderRepository orderRepository;
     private final OrderToAppointmentByDoctorDto orderToAppointmentByDoctorDto;
     private final ClientRepository clientRepository;
+    private final UserRepository userRepository;
+    private final OrderToMyAppointmentDtoTransformer orderToMyAppointmentDtoTransformer;
+
 
     @Override
     public List<AppointmentByDoctorDto> getAppointmentDoctorList(Long id) {
@@ -42,5 +49,14 @@ public class AppointmentClientServiceImpl implements AppointmentClientService {
             orderRepository.save(order);
         }
 
+    }
+
+    @Override
+    public List<MyAppointmentsDto> getMyAppointmentList(String userName) {
+        User client = userRepository.findByLogin(userName);
+        return     orderRepository.findAllByClientId(client.getId())
+                .stream()
+                .map(orderToMyAppointmentDtoTransformer::transform)
+                .toList();
     }
 }

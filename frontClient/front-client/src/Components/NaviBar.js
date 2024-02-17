@@ -110,6 +110,12 @@ function NaviBar(props) {
                             <Nav.Link href="/about">About Us</Nav.Link>
                             <Nav.Link href="/contacts">Contacts</Nav.Link>
                             <Nav.Link href="/blog">Blog</Nav.Link>
+                            {
+                                auth==="true"
+                                ? <Nav.Link href="/clientAppointment">MyAppointment</Nav.Link>
+                                    :<></>
+                            }
+
                         </Nav>
                         <Nav>
                             {auth === "false"

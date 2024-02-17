@@ -12,7 +12,7 @@ import Footer from "./Components/Footer";
 import DepartDetails from "./Components/DepartDetails";
 import AppointmentDetails from "./Components/AppointmentDetails";
 import ScheduleDoctor from "./Components/ScheduleDoctor";
-
+import ClientAppointment from "./Components/ClientAppointment"
 
 function App() {
     const [token, setToken] = useState(localStorage.getItem("token"));
@@ -29,6 +29,7 @@ function App() {
                         <Route exact path="/departDetails/:id" element={<DepartDetails/>} />
                         <Route exact path="/appointmentDetails/:id" element={<AppointmentDetails/>} />
                         <Route exact path="scheduleDoctor/:id" element={<ScheduleDoctor/>}/>
+                        <Route exact path="/clientAppointment" element={<ClientAppointment/>}/>
                     </Routes>
                     <Footer/>
                 </Router>
