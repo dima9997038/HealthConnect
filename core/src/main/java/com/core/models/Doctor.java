@@ -26,6 +26,7 @@ public class Doctor extends User {
     private String lastName;
     @Column(name = "specialization")
     private String specialization;
+
     @ManyToOne
     private TypeAppointment typeAppointment;
     @OneToMany(mappedBy = "doctor")

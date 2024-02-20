@@ -33,4 +33,5 @@ public class AdminController {
 //        log.info("Have been registered doctor with login " + dto.getLogin());
         return null;
     }
+
 }

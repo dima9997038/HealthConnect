@@ -16,4 +16,5 @@ public class DoctorDto {
     private String lastName;
     private String specialization;
     private String typeAppointment;
+    private Boolean active;
 }

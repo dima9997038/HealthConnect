@@ -49,4 +49,12 @@ public class DoctorServiceImpl implements DoctorService {
                 .toList();
 
     }
+
+    @Override
+    public List<DoctorDto> getAll() {
+        return doctorRepository.findAll()
+                .stream()
+                .map(doctorToDoctorDtoConvertor::convert)
+                .toList();
+    }
 }

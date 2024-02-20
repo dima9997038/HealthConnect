@@ -8,4 +8,6 @@ public interface DoctorService {
     DoctorDto addDoctor(DoctorDto doctorDto);
 
     List<DoctorDto> getDoctorsByAppointments(Integer appointmentId);
+
+    List<DoctorDto> getAll();
 }
