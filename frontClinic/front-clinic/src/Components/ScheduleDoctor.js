@@ -83,6 +83,7 @@ function ScheduleDoctor(props) {
                 timeZone={'Europe/Minsk'}
                 events={listAppointment}
                 dateClick={handleDateClick}
+                locale={"ru"}
 
             />
             <Modal show={show} onHide={handleClose}>
