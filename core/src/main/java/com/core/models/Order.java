@@ -36,4 +36,6 @@ public class Order {
     private LocalDateTime appointmentDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     List<OrderStatus> statuses = new ArrayList<>();
+    @Column(name = "description")
+    private String description;
 }

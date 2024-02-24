@@ -16,6 +16,7 @@ import AppointmentDetails from "./Components/AppointmentDetails";
 import ScheduleDoctor from "./Components/ScheduleDoctor";
 import ListDoctors from "./Components/ListDoctors";
 import AppointmentRequest from "./Components/AppointmentRequest";
+import DoctorAppointment from "./Components/DoctorAppointment";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <Route exact path="scheduleDoctor/:id" element={<ScheduleDoctor/>}/>
               <Route exact path="/listDoctors" element={<ListDoctors/>}/>
               <Route exact path="/appointmentRequest" element={<AppointmentRequest/>}/>
+              <Route exact path="/doctorAppointment" element={<DoctorAppointment/>}/>
             </Routes>
             <Footer/>
           </Router>
