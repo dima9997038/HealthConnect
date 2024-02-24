@@ -33,6 +33,7 @@ function NaviBar(props) {
 
     const token = useContext(AuthContext);
     const [username, setUsername] = useState(localStorage.getItem("username"))
+    const [checkedBox, setCheckedBox] = useState(false);
 
 
     const handleShow = () => {
@@ -88,6 +89,7 @@ function NaviBar(props) {
         });
 
     }
+
 
     return (
         <>
@@ -209,12 +211,17 @@ function NaviBar(props) {
                                           onChange={(e) => setBirthDay(e.target.value)}/>
                         </Form.Group>
                         <Form.Group controlId="fromBasicCheckBox">
-                            <Form.Check type="checkbox" label="Remember me"/>
+                            <Form.Check type="checkbox" label="Согласен на обработку персональных данных" checked={checkedBox} onChange={() => {setCheckedBox((!checkedBox))
+                            console.log(checkedBox)}} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleRegistration}>Registration</Button>
+                    {checkedBox
+                    ?<Button variant="primary" onClick={handleRegistration}>Registration</Button>
+                        :<></>
+                    }
+
                 </Modal.Footer>
             </Modal>
 
