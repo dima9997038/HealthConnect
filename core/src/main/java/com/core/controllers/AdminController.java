@@ -34,4 +34,11 @@ public class AdminController {
         return null;
     }
 
+    @PostMapping("/changeDoctor/{doctorId}")
+    public ResponseEntity<DoctorDto> changeDoctor(@RequestBody DoctorDto doctorDto, @PathVariable Long doctorId) {
+//        DoctorDto dto = doctorService.addDoctor(doctorDto);
+//        log.info("Have been registered doctor with login " + dto.getLogin());
+        return ResponseEntity.ok(doctorDto);
+    }
+
 }

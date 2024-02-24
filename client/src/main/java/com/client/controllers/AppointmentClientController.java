@@ -32,4 +32,11 @@ public class AppointmentClientController {
         String userName = (String) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
         return appointmentClientService.getMyAppointmentList(userName);
     }
+    @PostMapping("canceled/{orderId}")
+    private List<MyAppointmentsDto> canceled(@PathVariable Long orderId,Principal principal){
+        appointmentClientService.canceled(orderId);
+
+        String userName = (String) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
+        return appointmentClientService.getMyAppointmentList(userName);
+    }
 }

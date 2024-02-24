@@ -9,6 +9,7 @@ function AppointmentDetails(props) {
     let {id} = useParams();
     const [doctors, setDoctors] = useState([]);
 
+
     useEffect(() => {
         const apiUrl = 'http://localhost:8082/api/v1/public/doctor/byAppointments/' + id;
         axios.get(apiUrl).then((resp) => {

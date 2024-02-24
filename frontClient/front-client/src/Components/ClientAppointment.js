@@ -7,7 +7,7 @@ import Table from "react-bootstrap/Table";
 
 function ClientAppointment(props) {
     const [listAppointment, setListAppointment] = useState([]);
-
+    let orderId;
     useEffect(() => {
         const apiUrl = 'http://localhost:8080/api/v1/client/appointment/myAppointments';
         ;
@@ -25,6 +25,22 @@ function ClientAppointment(props) {
         });
     }, [setListAppointment]);
 
+    function handleDeleteFromOrder() {
+        console.log(orderId)
+        const url = 'http://localhost:8080/api/v1/client/appointment/canceled/'+orderId;
+        axios.post(url, {
+        }, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            }
+        }).then(resp => {
+            const data = resp.data;
+            setListAppointment(data);
+            }
+        )
+            .catch(err=>alert("Error"))
+    }
+
     return (
         <Row>
             <Col sm={2}>
@@ -39,7 +55,7 @@ function ClientAppointment(props) {
                         <th>Doctor</th>
                         <th>Appointment</th>
                         <th>Time</th>
-                        <th>Status</th>
+                        <th>Canceled</th>
                     </tr>
                     </thead>
                     <tbody> {listAppointment.map((d) => (
@@ -47,7 +63,10 @@ function ClientAppointment(props) {
                             <td>{d.doctorName}</td>
                             <td>{d.typeAppointment}</td>
                             <td>{d.time}</td>
-                            <td>{d.status}</td>
+                            <td> <td><Button variant="primary" onClick={(e) => {
+                                orderId=d.orderId
+                                handleDeleteFromOrder()
+                            }}>Canceled</Button></td></td>
                         </tr>
                     ))}
                     </tbody>

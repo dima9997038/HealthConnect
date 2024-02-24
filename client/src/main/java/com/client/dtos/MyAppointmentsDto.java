@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MyAppointmentsDto {
+    private Long orderId;
     private String doctorName;
     private String typeAppointment;
     private LocalDateTime time;

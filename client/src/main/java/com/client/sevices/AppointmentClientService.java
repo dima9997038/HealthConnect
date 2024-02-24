@@ -12,4 +12,6 @@ public interface AppointmentClientService {
     void addAppointment(AppointmentClientDto appointment);
 
     List<MyAppointmentsDto> getMyAppointmentList(String userName);
+
+    void canceled(Long orderId);
 }

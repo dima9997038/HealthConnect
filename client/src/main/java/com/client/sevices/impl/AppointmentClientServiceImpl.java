@@ -31,9 +31,9 @@ public class AppointmentClientServiceImpl implements AppointmentClientService {
     @Override
     public List<AppointmentByDoctorDto> getAppointmentDoctorList(Long id) {
         List<Order> orders = orderRepository.findAll();
-        return   orders.stream()
+        return orders.stream()
                 .filter(order -> order.getDoctor().getId().equals(id))
-                .filter(order -> order.getClient()==null)
+                .filter(order -> order.getClient() == null)
                 .map(orderToAppointmentByDoctorDto::transform)
                 .toList();
     }
@@ -43,8 +43,8 @@ public class AppointmentClientServiceImpl implements AppointmentClientService {
         Client client = clientRepository.findClientByLogin(appointment.getClient());
         List<Order> orders = orderRepository.findAllByDoctorId(appointment.getDoctorId());
         Optional<Order> first = orders.stream().filter(order -> order.getAppointmentDate().compareTo(appointment.getData()) == 0).findFirst();
-        if(first.isPresent()){
-            Order order=first.get();
+        if (first.isPresent()) {
+            Order order = first.get();
             order.setClient(client);
             orderRepository.save(order);
         }
@@ -54,9 +54,19 @@ public class AppointmentClientServiceImpl implements AppointmentClientService {
     @Override
     public List<MyAppointmentsDto> getMyAppointmentList(String userName) {
         User client = userRepository.findByLogin(userName);
-        return     orderRepository.findAllByClientId(client.getId())
+        return orderRepository.findAllByClientId(client.getId())
                 .stream()
                 .map(orderToMyAppointmentDtoTransformer::transform)
                 .toList();
+    }
+
+    @Override
+    public void canceled(Long orderId) {
+        Optional<Order> orderOptional = orderRepository.findById(orderId);
+        if (orderOptional.isPresent()){
+            Order order= orderOptional.get();
+            order.setClient(null);
+            orderRepository.save(order);
+        }
     }
 }

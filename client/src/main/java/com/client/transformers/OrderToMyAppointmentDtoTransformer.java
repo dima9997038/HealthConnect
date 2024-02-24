@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class OrderToMyAppointmentDtoTransformer {
     public MyAppointmentsDto transform(Order order){
         MyAppointmentsDto myAppointments = new MyAppointmentsDto();
+        myAppointments.setOrderId(order.getId());
         myAppointments.setTypeAppointment(order.getTypeAppointment().getName());
         myAppointments.setTime(order.getAppointmentDate());
         myAppointments.setStatus(order.getStatuses().get(0).getTypeOrderStatus().toString());
