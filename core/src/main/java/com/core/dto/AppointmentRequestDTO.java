@@ -11,5 +11,6 @@ public class AppointmentRequestDTO {
     private String phone;
     private String fullName;
     private Long doctorId;
+    private String doctorName;
     private String message;
 }

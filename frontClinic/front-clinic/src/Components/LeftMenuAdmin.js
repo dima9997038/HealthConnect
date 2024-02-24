@@ -16,6 +16,9 @@ function LeftMenuAdmin(props) {
             <Nav.Item>
                 <Nav.Link href="/listDoctors"><h2>List Doctors</h2></Nav.Link>
             </Nav.Item>
+            <Nav.Item>
+                <Nav.Link href="/appointmentRequest"><h2>Appointment Request</h2></Nav.Link>
+            </Nav.Item>
         </Nav>
     );
 }
