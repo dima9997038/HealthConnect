@@ -3,6 +3,8 @@ import {Button, Col, Form, Modal, Row} from "react-bootstrap";
 import LeftMenuAdmin from "./LeftMenuAdmin";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
+import yesImg from "../asserts/Yes.png"
+import noImg from "../asserts/No.jpg"
 
 function ListDoctors(props) {
     const [doctors, setDoctors] = useState([]);
@@ -17,6 +19,7 @@ function ListDoctors(props) {
     const [listTypeAppointment, setListTypeAppointment] = useState([]);
     const [active, setActive] = useState(false);
     const [doctorId,setDoctorId]=useState(0)
+    const [checkedBox, setCheckedBox] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => {
         setShow(true);
@@ -54,7 +57,7 @@ function ListDoctors(props) {
             secondName: secondName,
             lastName: lastName,
             specialization: specialization,
-            active:active,
+            active:checkedBox,
             typeAppointment: typeAppointment
         }, {
             headers: {
@@ -81,7 +84,6 @@ function ListDoctors(props) {
                             <th>Last Name</th>
                             <th>Specialization</th>
                             <th>Активность</th>
-                            <th>Изменить активность</th>
                             <th>Изменить данные</th>
 
                         </tr>
@@ -92,8 +94,24 @@ function ListDoctors(props) {
                                 <td>{d.secondName}</td>
                                 <td>{d.lastName}</td>
                                 <td>{d.specialization}</td>
-                                <td>{d.active.toString()}</td>
-                                <td><Button variant="primary">Изменить активность</Button></td>
+                                <td>
+                                    {d.active
+                                        ? <img
+                                            src={yesImg}
+                                            height="30"
+                                            width="60"
+                                            className='d-inline-block align-top mx-3'
+                                            alt="Logo"
+                                        />
+                                        :<img
+                                            src={noImg}
+                                            height="30"
+                                            width="60"
+                                            className='d-inline-block align-top mx-3'
+                                            alt="Logo"
+                                        />
+                                    }
+                                </td>
                                 <td><Button variant="primary" onClick={(e => {
                                     setDoctorId(d.id)
                                     setActive(d.active)
@@ -147,6 +165,12 @@ function ListDoctors(props) {
                                 return (<option key={item} value={item}>{item}</option>);
                             })}
                         </Form.Select>
+                    </Form.Group>
+                    <Form.Group controlId="fromBasicCheckBox">
+                        <Form.Check type="checkbox" label="Activity"
+                                    checked={checkedBox} onChange={() => {setCheckedBox((!checkedBox))
+                        }}
+                        />
                     </Form.Group>
                     <Button variant="primary" className="me-3 my-lg-3" onClick={(e => {
                         handleChangeDoctor()

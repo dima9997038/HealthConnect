@@ -10,4 +10,6 @@ public interface DoctorService {
     List<DoctorDto> getDoctorsByAppointments(Integer appointmentId);
 
     List<DoctorDto> getAll();
+
+    DoctorDto changeDoctor(DoctorDto doctorDto);
 }

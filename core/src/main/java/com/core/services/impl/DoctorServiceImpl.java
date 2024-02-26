@@ -57,4 +57,26 @@ public class DoctorServiceImpl implements DoctorService {
                 .map(doctorToDoctorDtoConvertor::convert)
                 .toList();
     }
+
+    @Override
+    public DoctorDto changeDoctor(DoctorDto doctorDto) {
+        Optional<Doctor> doctorOptional = doctorRepository.findById(doctorDto.getId());
+        if(doctorOptional.isPresent()){
+            Doctor doctor=doctorOptional.get();
+            doctor.setLogin(doctorDto.getLogin());
+            doctor.setPassword(passwordEncoder.encode(doctorDto.getPassword()));
+            doctor.setFirstName(doctorDto.getFirstName());
+            doctor.setSecondName(doctorDto.getSecondName());
+            doctor.setLastName(doctorDto.getLastName());
+            doctor.setSpecialization(doctorDto.getSpecialization());
+            Optional<TypeAppointment> optionalTypeAppointment = typeAppointmentRepository.findTypeAppointmentByName(doctorDto.getTypeAppointment());
+            if(optionalTypeAppointment.isPresent()){
+                doctor.setTypeAppointment(optionalTypeAppointment.get());
+            }
+
+            Doctor save = doctorRepository.save(doctor);
+            return doctorToDoctorDtoConvertor.convert(save);
+        }
+        return doctorDto;
+    }
 }

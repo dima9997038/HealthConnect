@@ -41,8 +41,9 @@ public class AdminController {
 
     @PostMapping("/changeDoctor/{doctorId}")
     public ResponseEntity<DoctorDto> changeDoctor(@RequestBody DoctorDto doctorDto, @PathVariable Long doctorId) {
-//        DoctorDto dto = doctorService.addDoctor(doctorDto);
-//        log.info("Have been registered doctor with login " + dto.getLogin());
+        doctorDto.setId(doctorId);
+        DoctorDto dto = doctorService.changeDoctor(doctorDto);
+        log.info("Have been changed doctor with login " + dto.getLogin());
         return ResponseEntity.ok(doctorDto);
     }
 
