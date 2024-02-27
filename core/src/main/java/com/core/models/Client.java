@@ -31,4 +31,10 @@ public class Client extends User {
     private LocalDate birthDay;
     @OneToMany(mappedBy = "client")
     List<Order> orders = new ArrayList<>();
+    @Column(name = "weight")
+    private Double weight;
+    @Column(name = "height")
+    private Double height;
+    @Column(name = "description")
+    private String description;
 }

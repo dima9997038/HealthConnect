@@ -1,5 +1,6 @@
 package com.core.controllers;
 
+import com.core.dto.ClientDto;
 import com.core.dto.DoctorDto;
 import com.core.services.impl.DoctorServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +21,10 @@ public class DoctorController {
     @GetMapping
     public List<DoctorDto> getDoctors(){
         return doctorService.getAll();
+    }
+
+    @GetMapping("/getAllClients")
+    public List<ClientDto> getAllClients(){
+        return doctorService.getAllClients();
     }
 }

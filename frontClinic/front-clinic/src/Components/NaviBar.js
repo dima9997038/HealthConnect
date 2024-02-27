@@ -80,6 +80,7 @@ function NaviBar(props) {
                         <Nav className="me-auto">
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/doctorAppointment">Doctor appointment</Nav.Link>
+                            <Nav.Link href="/clientsList">List of clients</Nav.Link>
                         </Nav>
                         <Nav>
                             {auth === "false"
